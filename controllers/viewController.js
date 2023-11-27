@@ -20,7 +20,8 @@ function sendOneTournament(req, res) {
   });
 }
 function redirectToTournament(req, res) {
-  res.redirect(`/create/${res.locals.tournament[0][0].id}`);
+  console.log("hi",res.locals.tournament.tournamentData.id);
+  res.redirect(`/create/${res.locals.tournament.tournamentData.id}`);
 }
 function showTournament(req, res) {
   res.render('tournament/4bracket', {

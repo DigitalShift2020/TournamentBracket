@@ -1,7 +1,15 @@
-//require and call pg-promises for querying the database
-const pgp = require('pg-promise')();
-//setting up the database for pg-promises
-const config = require('./dbConfig');
-const db = pgp(config);
-//export the db
-module.exports = db;
+const { Client, Pool } = require('pg');
+const config = require('./dbConfig')
+
+const db = new Client(config)
+const pool = new Pool(config);
+db.connect().then(() => console.log('connected to db')).catch(() => console.log('errror'))
+// write a db query to extract time from server
+db.query('SELECT NOW()', (err, res) => {
+    if (err) {
+        console.log(err.stack)
+    } else {
+        console.log(res.rows)
+    }
+})
+module.exports = {db, pool};

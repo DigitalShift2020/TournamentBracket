@@ -1,6 +1,8 @@
 //sets the database for local usage and on heroku
-module.exports = process.env.DATABASE_URL || {
+module.exports = {
   host: 'localhost',
-  port: 5432,
-  database: 'tournament'
+  database: 'tournament',
+  user: 'postgres',
+  password: 'himanshu@28',
+  port: '5432'
 }
