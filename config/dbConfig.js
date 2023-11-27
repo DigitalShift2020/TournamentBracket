@@ -3,6 +3,6 @@ module.exports = {
   host: 'localhost',
   database: 'tournament',
   user: 'postgres',
-  password: 'himanshu@28',
+  password: '12345',
   port: '5432'
 }

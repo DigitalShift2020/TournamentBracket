@@ -1,26 +1,104 @@
-<% include ../partials/boilerplate %>
-<div class="edit-tournament-page">
-  <form class="create-tournament" action="/create" method="post">
-    <label>
-      <h4>Please enter the name of your tournament</h4>
-      <input type="text" name="name" id="name" cols="30" rows="10" placeholder="Super cool Tournament"></input>
-    </label>
-    <label>
-      <h4>Please Select the Number of Competitors</h4>
-      <select name="num_comp">
-        <option value="4">4</option>
-      </select>
-    </label>
-    <label>
-      <h4>Enter Competitors Names</h4>
-      <div class="name-container">
-      <input type="text" name="comp_name" required>
-      <input type="text" name="comp_name" required>
-      <input type="text" name="comp_name" required>
-      <input type="text" name="comp_name" required>
-      </div>
-    </label>
-    <button type="submit">Start the Tournament!</button>
-  </form>
-</div>
-<% include ../partials/end %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Tournament</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+
+    .edit-tournament-page {
+      max-width: 600px;
+      margin: 50px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    form.create-tournament {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-bottom: 15px;
+    }
+
+    h4 {
+      margin-bottom: 8px;
+    }
+
+    input[type="text"],
+    select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+
+    .name-container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    button {
+      background-color: #4caf50;
+      color: #fff;
+      padding: 12px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <% include ../partials/boilerplate %>
+
+  <div class="edit-tournament-page">
+    <form class="create-tournament" action="/create" method="post">
+      <label>
+        <h4>Please enter the name of your tournament</h4>
+        <input type="text" name="name" id="name" placeholder="Super cool Tournament" required>
+      </label>
+      <label>
+        <h4>Please Select the Number of Competitors</h4>
+        <select name="num_comp" required>
+          <option value="4">4</option>
+          <option value="8">8</option>
+          <option value="16">16</option>
+        </select>
+      </label>
+      <label>
+        <h4>Enter Competitors Names</h4>
+        <div class="name-container">
+          <input type="text" name="comp_name" placeholder="Competitor 1" required>
+          <input type="text" name="comp_name" placeholder="Competitor 2" required>
+          <input type="text" name="comp_name" placeholder="Competitor 3" required>
+          <input type="text" name="comp_name" placeholder="Competitor 4" required>
+        </div>
+      </label>
+      <button type="submit">Start the Tournament!</button>
+    </form>
+  </div>
+
+  <% include ../partials/end %>
+
+</body>
+</html>

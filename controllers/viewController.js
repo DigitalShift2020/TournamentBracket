@@ -42,9 +42,11 @@ function sendMatch(req, res) {
   })
 }
 function redirectFromUpdate(req, res) {
+  console.log("i am here");
   if(!res.locals.match.tournament_id) {
     res.redirect(`/create/${res.locals.match.id}`)
   } else {
+    console.log(res.locals.match.tournament_id)
   res.redirect(`/create/${res.locals.match.tournament_id}`)
   }
 }

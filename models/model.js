@@ -133,8 +133,13 @@ async function buildBracket(id) {
 
 async function getOneMatch(id) {
   const result = await db.query(`
-    -- Your SQL query for a single match
-    `, [id]);
+  WITH selection1 AS
+  (SELECT matches.comp_a_id AS S1a_id, competitors.comp_name AS name1, matches.tournament_id AS tourney, matches.round_id AS round, matches.id AS matchey
+    FROM matches JOIN competitors ON matches.comp_a_id = competitors.id),
+  selection2 AS
+  (SELECT matches.comp_b_id AS S2b_id, competitors.comp_name AS name2, matches.tournament_id AS tourney, matches.round_id AS round, matches.id AS matchey
+    FROM matches JOIN competitors ON matches.comp_b_id = competitors.id)
+  SELECT * FROM selection1 JOIN selection2 ON selection2.matchey = selection1.matchey WHERE selection1.matchey = $1`, [id]);
   return result.rows[0];
 }
 
